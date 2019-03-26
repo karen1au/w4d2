@@ -19,13 +19,20 @@ function getPeopleByName (input, callback){
         .asCallback(callback);
 }
 
+function addPerson (first, last, date, callback){
+    knex.insert([{first_name: first, last_name: last, birthdate: date}])
+    .into('famous_people').asCallback(callback);
+}
+
+
+
 
 function close(){
     knex.destroy();
 }
 
 return {
-    
+    addPerson: addPerson,
     getPeopleByName: getPeopleByName,
     close: close
 
